@@ -49,7 +49,7 @@ public class CryptoWrapper {
 		return encodeToBase64(cipher.doFinal(decodeFromBase64(ciphertext)));
 	}
 
-	private static SecretKey getSecretKey(String shard1, String shard2) {
+	private SecretKey getSecretKey(String shard1, String shard2) {
 		if (shard1 == null || shard1.isEmpty()) {
 			throw new IllegalArgumentException();
 		}
@@ -67,16 +67,16 @@ public class CryptoWrapper {
 		return new SecretKeySpec(mergedKey, 0, mergedKey.length, CIPHER_TYPE);
 	}
 
-	private static Map<Integer, byte[]> getShards(SecretKey secretKey) {
+	private Map<Integer, byte[]> getShards(SecretKey secretKey) {
 		Scheme scheme = new Scheme(new SecureRandom(), 2, 2);
 		return scheme.split(secretKey.getEncoded());
 	}
 
-	private static String encodeToBase64(byte[] bytesToEncode) {
+	private String encodeToBase64(byte[] bytesToEncode) {
 		return Base64.getEncoder().encodeToString(bytesToEncode);
 	}
 
-	private static byte[] decodeFromBase64(String stringToDecode) {
+	private byte[] decodeFromBase64(String stringToDecode) {
 		return Base64.getDecoder().decode(stringToDecode);
 	}
 }
