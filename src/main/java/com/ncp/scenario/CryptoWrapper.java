@@ -72,11 +72,11 @@ public class CryptoWrapper {
 		return scheme.split(secretKey.getEncoded());
 	}
 
-	public static String encodeToBase64(byte[] bytesToEncode) {
+	private static String encodeToBase64(byte[] bytesToEncode) {
 		return Base64.getEncoder().encodeToString(bytesToEncode);
 	}
 
-	public static byte[] decodeFromBase64(String stringToDecode) {
+	private static byte[] decodeFromBase64(String stringToDecode) {
 		return Base64.getDecoder().decode(stringToDecode);
 	}
 }
